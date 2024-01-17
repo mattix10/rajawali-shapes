@@ -2,6 +2,8 @@ package com.example.rajawaliproject;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -58,7 +60,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // Kod, który zostanie wykonany po kliknięciu przycisku
                 Vector3 vector =  renderer.getCurrentCamera().getPosition();
-                renderer.getCurrentCamera().setPosition(vector.x,vector.y, vector.z - 5);
+                if(vector.z - 5>=0)
+                    renderer.getCurrentCamera().setPosition(vector.x,vector.y, vector.z - 5);
             }
         });
 
@@ -80,29 +83,33 @@ public class MainActivity extends AppCompatActivity {
          if (position == 0) {
              renderer.loadModel(R.raw.cos2_obj);
              String fileSize = getFileSize(R.raw.cos2_obj);
-             String extension = getExtension(R.raw.cos_obj);
-             String text = fileSize +"\n"+extension;
+             String extension = getExtension(R.raw.cos2_obj);
+             String fileName = getFileName(R.raw.cos2_obj);
+             String text = fileSize +"\n"+extension +"\n"+ fileName;
              fileInfoText.setText(text);
          }
          if (position == 1) {
              renderer.loadModel(R.raw.kostka_obj);
              String fileSize = getFileSize(R.raw.kostka_obj);
              String extension = getExtension(R.raw.kostka_obj);
-             String text = fileSize +"\n"+extension;;
+             String fileName = getFileName(R.raw.kostka_obj);
+             String text = fileSize +"\n"+extension +"\n"+ fileName;
              fileInfoText.setText(text);
          }
         if (position == 2) {
             renderer.loadModel(R.raw.gwiazdka4);
             String fileSize = getFileSize(R.raw.gwiazdka4);
-            String extension = getExtension(R.raw.gwiazdka2);
-            String text = fileSize +"\n"+extension;;
+            String extension = getExtension(R.raw.gwiazdka4);
+            String fileName = getFileName(R.raw.gwiazdka4);
+            String text = fileSize +"\n"+extension +"\n"+ fileName;
             fileInfoText.setText(text);
         }
         if (position == 3) {
             renderer.loadModel(R.raw.zegarek4);
             String fileSize = getFileSize(R.raw.zegarek4);
             String extension = getExtension(R.raw.zegarek4);
-            String text = fileSize +"\n"+extension;;
+            String fileName = getFileName(R.raw.zegarek4);
+            String text = fileSize +"\n"+extension +"\n"+ fileName;
             fileInfoText.setText(text);
         }
 
@@ -131,8 +138,15 @@ public class MainActivity extends AppCompatActivity {
     private String getExtension(int rawResourceId){
         String textExtension = "Extension: ";
         if(rawResourceId == R.raw.cos2_obj) return textExtension + "mtl";
+        if(rawResourceId == R.raw.kostka_obj) return textExtension + "mtl";
         if(rawResourceId == R.raw.gwiazdka2) return textExtension + "dxf";
         return textExtension+"obj";
+    }
+
+    private String getFileName(int rawResourceId){
+        Resources resources = this.getResources();
+        String fileName = resources.getResourceEntryName(rawResourceId);
+        return "FileName: "+ fileName;
     }
 
 
