@@ -7,10 +7,18 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
+
 import org.rajawali3d.math.vector.Vector3;
 import org.rajawali3d.view.ISurface;
 import org.rajawali3d.view.SurfaceView;
+
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+
 public class MainActivity extends AppCompatActivity {
     BasicRenderer renderer;
     private Button buttonOut;
@@ -68,8 +76,63 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void loadModel(int position) {
-         if (position == 0) { renderer.loadModel(R.raw.cos2_obj );}
-         if (position == 1) { renderer.loadModel(R.raw.kostka_obj); }
+        TextView fileInfoText = (TextView) findViewById(R.id.FileInfoText);
+         if (position == 0) {
+             renderer.loadModel(R.raw.cos2_obj);
+             String fileSize = getFileSize(R.raw.cos2_obj);
+             String extension = getExtension(R.raw.cos_obj);
+             String text = fileSize +"\n"+extension;
+             fileInfoText.setText(text);
+         }
+         if (position == 1) {
+             renderer.loadModel(R.raw.kostka_obj);
+             String fileSize = getFileSize(R.raw.kostka_obj);
+             String extension = getExtension(R.raw.kostka_obj);
+             String text = fileSize +"\n"+extension;;
+             fileInfoText.setText(text);
+         }
+        if (position == 2) {
+            renderer.loadModel(R.raw.gwiazdka4);
+            String fileSize = getFileSize(R.raw.gwiazdka4);
+            String extension = getExtension(R.raw.gwiazdka2);
+            String text = fileSize +"\n"+extension;;
+            fileInfoText.setText(text);
+        }
+        if (position == 3) {
+            renderer.loadModel(R.raw.zegarek4);
+            String fileSize = getFileSize(R.raw.zegarek4);
+            String extension = getExtension(R.raw.zegarek4);
+            String text = fileSize +"\n"+extension;;
+            fileInfoText.setText(text);
+        }
+
+    }
+
+    private String getFileSize(int rawResourceId) {
+        InputStream inputStream = null;
+        try {
+            inputStream = getResources().openRawResource(rawResourceId);
+            int size = inputStream.available();
+            return "Size: " + size + " bytes";
+        } catch (IOException e) {
+            e.printStackTrace();
+            return "Error";
+        } finally {
+            if (inputStream != null) {
+                try {
+                    inputStream.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    private String getExtension(int rawResourceId){
+        String textExtension = "Extension: ";
+        if(rawResourceId == R.raw.cos2_obj) return textExtension + "mtl";
+        if(rawResourceId == R.raw.gwiazdka2) return textExtension + "dxf";
+        return textExtension+"obj";
     }
 
 

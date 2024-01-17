@@ -3,5 +3,7 @@
     <string-array name="model_list">
         <item>cos2_obj</item>
         <item>kostka_obj</item>
+        <item>gwiazdka2</item>
+        <item>zegarek4</item>
     </string-array>
 </resources>
