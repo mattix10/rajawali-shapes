@@ -97,18 +97,34 @@ public class MainActivity extends AppCompatActivity {
              fileInfoText.setText(text);
          }
         if (position == 2) {
-            renderer.loadModel(R.raw.gwiazdka4);
-            String fileSize = getFileSize(R.raw.gwiazdka4);
-            String extension = getExtension(R.raw.gwiazdka4);
-            String fileName = getFileName(R.raw.gwiazdka4);
+            renderer.loadModel(R.raw.gwiazdka_obj);
+            String fileSize = getFileSize(R.raw.gwiazdka_obj);
+            String extension = getExtension(R.raw.gwiazdka_obj);
+            String fileName = getFileName(R.raw.gwiazdka_obj);
             String text = fileSize +"\n"+extension +"\n"+ fileName;
             fileInfoText.setText(text);
         }
         if (position == 3) {
-            renderer.loadModel(R.raw.zegarek4);
-            String fileSize = getFileSize(R.raw.zegarek4);
-            String extension = getExtension(R.raw.zegarek4);
-            String fileName = getFileName(R.raw.zegarek4);
+            renderer.loadModel(R.raw.zegarek_obj);
+            String fileSize = getFileSize(R.raw.zegarek_obj);
+            String extension = getExtension(R.raw.zegarek_obj);
+            String fileName = getFileName(R.raw.zegarek_obj);
+            String text = fileSize +"\n"+extension +"\n"+ fileName;
+            fileInfoText.setText(text);
+        }
+        if (position == 4) {
+            renderer.loadModel(R.raw.toilet_obj);
+            String fileSize = getFileSize(R.raw.toilet_obj);
+            String extension = getExtension(R.raw.toilet_obj);
+            String fileName = getFileName(R.raw.toilet_obj);
+            String text = fileSize +"\n"+extension +"\n"+ fileName;
+            fileInfoText.setText(text);
+        }
+        if (position == 5) {
+            renderer.loadModel(R.raw.test_obj);
+            String fileSize = getFileSize(R.raw.test_obj);
+            String extension = getExtension(R.raw.test_obj);
+            String fileName = getFileName(R.raw.test_obj);
             String text = fileSize +"\n"+extension +"\n"+ fileName;
             fileInfoText.setText(text);
         }
@@ -137,9 +153,9 @@ public class MainActivity extends AppCompatActivity {
 
     private String getExtension(int rawResourceId){
         String textExtension = "Extension: ";
-        if(rawResourceId == R.raw.cos2_obj) return textExtension + "mtl";
+        /*if(rawResourceId == R.raw.cos2_obj) return textExtension + "mtl";
         if(rawResourceId == R.raw.kostka_obj) return textExtension + "mtl";
-        if(rawResourceId == R.raw.gwiazdka2) return textExtension + "dxf";
+        if(rawResourceId == R.raw.gwiazdka2) return textExtension + "dxf";*/
         return textExtension+"obj";
     }
 

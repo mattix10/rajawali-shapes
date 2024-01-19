@@ -1,6 +1,6 @@
 # Blender 4.0.2
 # www.blender.org
-mtllib cos2.mtl
+mtllib cos_mtl
 o Circle
 v -0.103190 -0.165012 -0.469542
 v -0.298280 -0.165012 -0.450327

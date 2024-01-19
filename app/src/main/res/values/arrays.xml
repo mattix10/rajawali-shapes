@@ -3,7 +3,8 @@
     <string-array name="model_list">
         <item>cos2_obj</item>
         <item>kostka_obj</item>
-        <item>gwiazdka2</item>
-        <item>zegarek4</item>
+        <item>gwiazdka_obj</item>
+        <item>zegarek_obj</item>
+        <item>toilet_obj</item>
     </string-array>
 </resources>
