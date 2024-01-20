@@ -25,12 +25,13 @@ public class BasicRenderer extends Renderer {
 
     @Override
     public void initScene() {
+        //getCurrentScene().setBackgroundColor(1.0f,1.0f,1.0f,1.0f);
         mDirectionalLight = new DirectionalLight(1f, .2f, -1.0f);
         Material material = new Material();
         material.enableLighting(true);
         material.setDiffuseMethod(new DiffuseMethod.Lambert());
-        material.setColorInfluence(0);
-
+        material.setColorInfluence(1);
+        Log.d("Material", material.toString());
         // Loading objects
         try {
             DirectionalLight key = new DirectionalLight(-4,-4,-4);
@@ -40,6 +41,7 @@ public class BasicRenderer extends Renderer {
             LoaderOBJ loader = new LoaderOBJ(getContext().getResources(), mTextureManager, R.raw.cos2_obj);
             loader.parse();
             Object3D obj = loader.getParsedObject();
+
             getCurrentScene().addChild(obj);
 
             ArcballCamera arcball = new ArcballCamera(mContext, ((Activity) mContext).findViewById(R.id.myView));
@@ -68,6 +70,7 @@ public class BasicRenderer extends Renderer {
         // Na przykład, usunięcie bieżącego modelu i załadowanie nowego
         getCurrentScene().clearChildren();
         try {
+
             LoaderOBJ loader = new LoaderOBJ(getContext().getResources(), mTextureManager, modelName);
             loader.parse();
             Object3D obj = loader.getParsedObject();
