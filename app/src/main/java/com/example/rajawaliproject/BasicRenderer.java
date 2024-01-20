@@ -10,6 +10,7 @@ import org.rajawali3d.lights.DirectionalLight;
 import org.rajawali3d.loader.LoaderOBJ;
 import org.rajawali3d.materials.Material;
 import org.rajawali3d.materials.methods.DiffuseMethod;
+import org.rajawali3d.math.vector.Vector3;
 import org.rajawali3d.renderer.Renderer;
 
 public class BasicRenderer extends Renderer {
@@ -79,4 +80,24 @@ public class BasicRenderer extends Renderer {
             Log.d("exception:", e.getMessage());
         }
     }
+
+    public void restartCamera()
+    {
+        ArcballCamera arcball = new ArcballCamera(mContext, ((Activity) mContext).findViewById(R.id.myView));
+        arcball.setPosition(4, 4, 4);
+        getCurrentScene().replaceAndSwitchCamera(getCurrentCamera(), arcball);
+    }
+
+
+    public Vector3 getCurrentObjectPosition() {
+
+        if (selectedObject != null) {
+            Log.d("selected object",selectedObject.toString());
+            Log.d("selected object get position",selectedObject.getPosition().toString());
+            return selectedObject.getPosition();
+        }
+        Log.d("selected object", "NULL");
+        return null;
+    }
+
 }

@@ -25,8 +25,9 @@ public class MainActivity extends AppCompatActivity {
     BasicRenderer renderer;
     private Button buttonOut;
     private Button buttonIn;
-
+    private Vector3 initPosition;
     private Button buttonCenter;
+    private Button buttonResetCamera;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
         buttonOut = findViewById(R.id.button_out);
         buttonIn = findViewById(R.id.button_in);
         buttonCenter = findViewById(R.id.button_center);
+        buttonResetCamera = findViewById(R.id.button_resetcamera);
 
         // Spinner
         Spinner modelSpinner = findViewById(R.id.model_spinner);
@@ -74,10 +76,17 @@ public class MainActivity extends AppCompatActivity {
                 Vector3 vector =  renderer.getCurrentCamera().getPosition();
                 renderer.getCurrentCamera().setLookAt(0,0,0);
                 renderer.getCurrentCamera().setPosition(0,0, 20);
-                renderer.getCurrentScene().get;
-
             }
         });
+
+        buttonResetCamera.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                renderer.restartCamera();
+            }
+        });
+
+
 
         modelSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -141,7 +150,7 @@ public class MainActivity extends AppCompatActivity {
             String text = fileSize +"\n"+extension +"\n"+ fileName;
             fileInfoText.setText(text);
         }
-
+        initPosition = renderer.getCurrentObjectPosition();
     }
 
     private String getFileSize(int rawResourceId) {
@@ -166,9 +175,9 @@ public class MainActivity extends AppCompatActivity {
 
     private String getExtension(int rawResourceId){
         String textExtension = "Extension: ";
-        /*if(rawResourceId == R.raw.cos2_obj) return textExtension + "mtl";
+        if(rawResourceId == R.raw.cos2_obj) return textExtension + "mtl";
         if(rawResourceId == R.raw.kostka_obj) return textExtension + "mtl";
-        if(rawResourceId == R.raw.gwiazdka2) return textExtension + "dxf";*/
+        if(rawResourceId == R.raw.gwiazdka2) return textExtension + "dxf";
         return textExtension+"obj";
     }
 
