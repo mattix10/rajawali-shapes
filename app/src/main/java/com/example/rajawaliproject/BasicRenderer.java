@@ -21,6 +21,7 @@ public class BasicRenderer extends Renderer {
         this.context = context;
         setFrameRate(60);
     }
+    private Object3D selectedObject;
 
     @Override
     public void initScene() {

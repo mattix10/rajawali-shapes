@@ -26,12 +26,15 @@ public class MainActivity extends AppCompatActivity {
     private Button buttonOut;
     private Button buttonIn;
 
+    private Button buttonCenter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         buttonOut = findViewById(R.id.button_out);
         buttonIn = findViewById(R.id.button_in);
+        buttonCenter = findViewById(R.id.button_center);
 
         // Spinner
         Spinner modelSpinner = findViewById(R.id.model_spinner);
@@ -65,6 +68,16 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        buttonCenter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Vector3 vector =  renderer.getCurrentCamera().getPosition();
+                renderer.getCurrentCamera().setLookAt(0,0,0);
+                renderer.getCurrentCamera().setPosition(0,0, 20);
+                renderer.getCurrentScene().get;
+
+            }
+        });
 
         modelSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
